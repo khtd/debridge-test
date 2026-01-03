@@ -1,0 +1,13 @@
+{
+  "name": "@debridge-test/api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@debridge-test/common": "*",
+    "envalid": "^8.1.1"
+  }
+}

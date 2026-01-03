@@ -7,7 +7,7 @@
     "packages/*"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "node scripts/clean.mjs"
   },
   "author": "sonya agranov",
   "license": "ISC",

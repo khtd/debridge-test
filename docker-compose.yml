@@ -1,0 +1,67 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dln
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  indexer:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        NODE_APP_DIR: "apps/indexer/"
+        NODE_APP_NAME: "@debridge-test/indexer"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+      SOLANA_RPC_URL: https://api.devnet.solana.com
+    depends_on:
+      - db
+    volumes:
+      - ./apps/indexer:/usr/src/app
+
+  aggregator:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        NODE_APP_DIR: "apps/aggregator/"
+        NODE_APP_NAME: "@debridge-test/aggregator"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+    depends_on:
+      - db
+    volumes:
+      - ./apps/aggregator:/usr/src/app
+
+  api:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        NODE_APP_DIR: "apps/api/"
+        NODE_APP_NAME: "@debridge-test/api"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+    depends_on:
+      - db
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./apps/api:/usr/src/app
+
+# frontend:
+#   build: ./apps/frontend
+#  ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./apps/frontend:/usr/src/app
+#    command: ["npm", "run", "dev"]
+
+volumes:
+  db_data:
