@@ -10,6 +10,22 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  db-migrate:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        NODE_APP_DIR: "packages/db/"
+        NODE_APP_NAME: "@debridge-test/db"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+    depends_on:
+      - db
+    volumes:
+      - ./apps/indexer:/usr/src/app
+    restart: "no"
+    command: "npm run migrate"
+
   indexer:
     build:
       context: .
@@ -21,7 +37,8 @@ services:
       DATABASE_URL: postgres://postgres:postgres@db:5432/dln
       SOLANA_RPC_URL: https://api.devnet.solana.com
     depends_on:
-      - db
+      db-migrate:
+        condition: service_completed_successfully
     volumes:
       - ./apps/indexer:/usr/src/app
 
@@ -35,7 +52,8 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/dln
     depends_on:
-      - db
+      db-migrate:
+        condition: service_completed_successfully
     volumes:
       - ./apps/aggregator:/usr/src/app
 
@@ -49,7 +67,8 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/dln
     depends_on:
-      - db
+      db-migrate:
+        condition: service_completed_successfully
     ports:
       - "4000:4000"
     volumes:

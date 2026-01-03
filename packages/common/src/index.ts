@@ -1,1 +1,1 @@
-export type A = number;
+export * from "./domain.js"

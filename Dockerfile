@@ -10,6 +10,8 @@ COPY . .
 RUN npm ci --cache .npm --prefer-offline
 
 RUN npm run build --workspace @debridge-test/common
+RUN npm run build --workspace @debridge-test/db
+RUN npm run build --workspace @debridge-test/dln-idl
 RUN npm run build --workspace "$NODE_APP_NAME"
 
 

@@ -8,6 +8,9 @@
   },
   "dependencies": {
     "@debridge-test/common": "*",
+    "@debridge-test/db": "*",
+    "@debridge-test/dln-idl": "*",
+    "@solana/kit": "^5.1.0",
     "envalid": "^8.1.1"
   }
 }

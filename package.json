@@ -7,7 +7,9 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "node scripts/clean.mjs"
+    "clean": "node scripts/clean.mjs",
+    "migrate": "npm run migrate --workspace @debridge-test/db",
+    "migrate:down": "npm run migrate:down --workspace @debridge-test/db"
   },
   "author": "sonya agranov",
   "license": "ISC",

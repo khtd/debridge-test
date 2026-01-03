@@ -1,0 +1,3 @@
+[submodule "packages/dln-idl/src/vendor"]
+	path = packages/dln-idl/src/vendor
+	url = https://github.com/debridge-finance/abis-and-idls.git

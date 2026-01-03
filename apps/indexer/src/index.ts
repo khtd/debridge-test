@@ -1,3 +1,3 @@
-import { A } from '@debridge-test/common';
-const a: A = 1;
+import { } from '@debridge-test/common';
+
 console.log("hello world")

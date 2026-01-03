@@ -1,0 +1,23 @@
+{
+  "name": "@debridge-test/db",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "migrate": "npm run migrate:latest",
+    "migrate:latest": "node dist/migrate.js",
+    "migrate:down": "node dist/migrate.js -- --direction=down"
+  },
+  "dependencies": {
+    "envalid": "^8.1.1",
+    "kysely": "^0.28.9",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.16.0"
+  }
+}

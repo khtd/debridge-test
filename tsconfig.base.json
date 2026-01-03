@@ -9,7 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@debridge-test/common": ["packages/common/src"]
+      "@debridge-test/common": ["packages/common/src"],
+      "@debridge-test/db": ["packages/db/src"],
+      "@debridge-test/dln-idl": ["packages/dln-idl/src"]
     }
   }
 }
