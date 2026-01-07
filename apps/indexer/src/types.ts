@@ -1,6 +1,6 @@
 import  type { PublicKey } from '@solana/web3.js';
 import type {  DlnDstType, DlnSrcType } from "@debridge-test/dln-idl";
-import type { BorshCoder, Idl, Event, DecodeType, workspace } from '@coral-xyz/anchor';
+import type { BorshCoder, Idl, Event } from '@coral-xyz/anchor';
 import { TypeDef } from '@coral-xyz/anchor/dist/cjs/program/namespace/types.js';
 
 export enum DLN_PROGRAM {

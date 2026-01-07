@@ -1,8 +1,40 @@
 import { Kysely, sql } from 'kysely'
 
 export async function up(db: Kysely<any>): Promise<void> {
+  await db.schema.createType(`indexer_mode`).asEnum(['historical', 'live']).execute()
+
+  await db.schema
+    .createTable('indexer_state')
+    .addColumn('program_id', 'text', (col) => col.primaryKey())
+    .addColumn('last_signature', 'text', (col) => col.notNull().unique())
+    .addColumn('mode', sql`indexer_mode`, (col) => col.notNull())
+    .addColumn('updated_at', 'timestamp', (col) => col.notNull().defaultTo(sql`now()`))
+    .execute();
+
+  await db.schema
+    .createTable('transactions')
+    .addColumn('signature', 'text', (col) => col.primaryKey())
+    .addColumn('slot', 'text', (col) => col.notNull())
+    .addColumn('block_time', 'timestamptz', (col) => col.notNull())
+    .addColumn('program_id', 'text', (col) => col.notNull())
+    .addColumn('processed', 'boolean', (col) => col.notNull().defaultTo(false))
+    .execute();
+
+  await db.schema
+    .createTable('events')
+    .addColumn('id', 'serial', (col) => col.primaryKey())
+    .addColumn('signature', 'text', (col) => col.references(`transactions.signature`).notNull())
+    .addColumn('slot', 'text', (col) => col.notNull())
+    .addColumn('block_time', 'timestamptz', (col) => col.notNull())
+    .addColumn('event_type', 'text', (col) => col.notNull())
+    .addColumn('order_id', 'char(64)', (col) => col.notNull())
+    .addColumn('raw_data', 'jsonb', (col) => col.notNull())
+    .addColumn('processed', 'boolean', (col) => col.notNull().defaultTo(false))
+    .execute();
+
   await db.schema
     .createTable('orders')
+    .ifNotExists()
     .addColumn('order_id', 'char(64)', (col) => col.primaryKey())
     .addColumn('created_at', 'timestamp', (col) => col.notNull())
     .addColumn('fulfilled_at', 'timestamp')
@@ -14,26 +46,12 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('take_amount', 'text', (col) => col.notNull())
     .addColumn('usd_amount', 'numeric')
     .execute();
-
-  await db.schema
-    .createTable('order_events')
-    .addColumn('id', 'serial', (col) => col.primaryKey())
-    .addColumn('type', 'text', (col) => col.notNull())
-    .addColumn('timestamp', 'timestamp', (col) => col.notNull())
-    .addColumn('data', 'jsonb', (col) => col.notNull())
-    .execute();
-
-  await db.schema
-    .createTable('checkpoints')
-    .addColumn('id', 'serial', (col) => col.primaryKey())
-    .addColumn('name', 'text', (col) => col.notNull().unique())
-    .addColumn('last_processed_slot', 'text', (col) => col.notNull())
-    .addColumn('updated_at', 'timestamp', (col) => col.notNull().defaultTo(sql`now()`))
-    .execute();
 }
 
 export async function down(db: Kysely<any>): Promise<void> {
-  await db.schema.dropTable("checkpoints").execute();
-  await db.schema.dropTable("order_events").execute();
+  await db.schema.dropTable("events").execute();
   await db.schema.dropTable("orders").execute();
+  await db.schema.dropTable("indexer_state").execute();
+  await db.schema.dropType(`indexer_mode`).ifExists().execute()
+  await db.schema.dropTable("transactions").execute();
 }

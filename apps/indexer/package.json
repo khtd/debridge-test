@@ -11,7 +11,9 @@
     "@debridge-test/common": "*",
     "@debridge-test/db": "*",
     "@debridge-test/dln-idl": "*",
+    "@effect/platform-node": "^0.104.0",
     "@solana/web3.js": "^1.98.4",
+    "effect": "^3.19.14",
     "envalid": "^8.1.1"
   }
 }

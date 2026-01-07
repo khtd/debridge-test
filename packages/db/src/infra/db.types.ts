@@ -9,6 +9,8 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
   : ColumnType<T, T | undefined, T>;
 
+export type IndexerMode = "historical" | "live";
+
 export type Json = JsonValue;
 
 export type JsonArray = JsonValue[];
@@ -25,18 +27,22 @@ export type Numeric = ColumnType<string, number | string, number | string>;
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
-export interface Checkpoints {
+export interface Events {
+  blockTime: Timestamp;
+  eventType: string;
   id: Generated<number>;
-  lastProcessedSlot: string;
-  name: string;
-  updatedAt: Generated<Timestamp>;
+  orderId: string;
+  processed: Generated<boolean>;
+  rawData: Json;
+  signature: string;
+  slot: string;
 }
 
-export interface OrderEvents {
-  data: Json;
-  id: Generated<number>;
-  timestamp: Timestamp;
-  type: string;
+export interface IndexerState {
+  lastSignature: string;
+  mode: IndexerMode;
+  programId: string;
+  updatedAt: Generated<Timestamp>;
 }
 
 export interface Orders {
@@ -52,8 +58,17 @@ export interface Orders {
   usdAmount: Numeric | null;
 }
 
+export interface Transactions {
+  blockTime: Timestamp;
+  processed: Generated<boolean>;
+  programId: string;
+  signature: string;
+  slot: string;
+}
+
 export interface DB {
-  checkpoints: Checkpoints;
-  orderEvents: OrderEvents;
+  events: Events;
+  indexerState: IndexerState;
   orders: Orders;
+  transactions: Transactions;
 }

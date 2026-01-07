@@ -13,7 +13,7 @@ export class OrdersRepo {
   }
 
   async updateOrderByOrderId(orderId: string, order: UpdateObject<DB, "orders">) {
-    await db
+    return await db
       .updateTable('orders')
       .set(order)
       .where("orderId", "=", orderId)

@@ -1,4 +1,4 @@
-import { Connection, SolanaJSONRPCError, SolanaJSONRPCErrorCode } from '@solana/web3.js';
+import { Connection, PublicKey, SolanaJSONRPCError, SolanaJSONRPCErrorCode } from '@solana/web3.js';
 import { config } from '../config.js';
 
 export const solanaConnection = new Connection(config.SOLANA_RPC_URL, {
@@ -27,4 +27,18 @@ export async function getBlock(slot: number) {
 
     throw err;
   }
+}
+
+export async function getSignaturesForAddress(address: PublicKey, opts: { before?: string; until?: string } = {}) {
+  return await solanaConnection.getSignaturesForAddress(
+    address,
+    { limit: 1000, ...opts }
+  );
+}
+
+export async function getTransaction(signature: string) {
+  return await solanaConnection.getTransaction(signature, {
+    commitment: 'confirmed',
+    maxSupportedTransactionVersion: 0,
+  });
 }
