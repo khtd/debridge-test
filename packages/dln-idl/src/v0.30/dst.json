@@ -1,0 +1,1849 @@
+{
+  "address": "src5qyZHqTqecJV4aY6Cb6zDZLMDzrDKKezs22MPHr4",
+  "metadata": {
+    "name": "dln_dst",
+    "version": "1.2.1",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_state",
+      "discriminator": [
+        190,
+        171,
+        224,
+        219,
+        217,
+        72,
+        199,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authorized_dst_native_sender",
+          "writable": true
+        },
+        {
+          "name": "authorized_dst_native_sender_wallet",
+          "writable": true
+        },
+        {
+          "name": "native_token_mint"
+        },
+        {
+          "name": "spl_token_program"
+        },
+        {
+          "name": "associated_spl_token_program"
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "realloc_state",
+      "discriminator": [
+        67,
+        181,
+        233,
+        214,
+        215,
+        148,
+        245,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_stop_tap",
+      "discriminator": [
+        80,
+        3,
+        201,
+        203,
+        245,
+        184,
+        51,
+        5
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "stop_tap",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_protocol_authority",
+      "discriminator": [
+        96,
+        162,
+        46,
+        152,
+        72,
+        147,
+        175,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "update_state",
+          "accounts": [
+            {
+              "name": "state",
+              "writable": true
+            },
+            {
+              "name": "protocol_authority",
+              "writable": true,
+              "signer": true
+            },
+            {
+              "name": "system_program"
+            }
+          ]
+        },
+        {
+          "name": "new_protocol_authority",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize_src_contract_address",
+      "discriminator": [
+        136,
+        132,
+        246,
+        126,
+        114,
+        104,
+        229,
+        33
+      ],
+      "accounts": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "authorized_src_contract",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "chain_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "src_contract",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "update_src_contract_address",
+      "discriminator": [
+        124,
+        255,
+        153,
+        114,
+        38,
+        94,
+        30,
+        185
+      ],
+      "accounts": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "authorized_src_contract",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "chain_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "src_contract",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "unpause_src_contract_address",
+      "discriminator": [
+        213,
+        159,
+        152,
+        65,
+        153,
+        86,
+        184,
+        100
+      ],
+      "accounts": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "authorized_src_contract",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "chain_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "pause_src_contract_address",
+      "discriminator": [
+        5,
+        188,
+        58,
+        214,
+        92,
+        59,
+        215,
+        172
+      ],
+      "accounts": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "authorized_src_contract",
+          "writable": true
+        },
+        {
+          "name": "stop_tap",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "chain_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "cancel_order",
+      "docs": [
+        "Send cancel order in [`Order::give.chain_id`]",
+        "",
+        "If the order was not filled or canceled earlier,",
+        "[`Order::order_authority_address_dst`] can cancel it and get back the give part in [`Order::give.chain_id`] chain",
+        "In the receive chain, the `dln_src::claim_order_cancel` will be called",
+        "",
+        "# Args",
+        "* `unvalidated_order` - not fulfillied order only for cancel",
+        "* `order_id` - identificator of order",
+        "",
+        "# Allowed",
+        "By [`Order::order_authority_address_dst`] only"
+      ],
+      "discriminator": [
+        95,
+        129,
+        237,
+        240,
+        8,
+        49,
+        223,
+        132
+      ],
+      "accounts": [
+        {
+          "name": "take_order_state",
+          "docs": [
+            "Take Order State-Account",
+            "Not exists at moment of call, will inititlize in `cancel_order`",
+            "Seeds: `[b\"TAKE_ORDER_STATE\", &order_id]`"
+          ],
+          "writable": true
+        },
+        {
+          "name": "authorized_src_contract",
+          "docs": [
+            "Account with address of dln::src contract in [`Order::give.chain_id`] chain",
+            "Using here for validate supporting of order give chain and size of addresses",
+            "Seeds: `[b\"AUTHORIZED_SRC_CONTRACT\", order.give.chain_id]`"
+          ]
+        },
+        {
+          "name": "canceler",
+          "docs": [
+            "Must be equal to [`Order::order_authority_address_dst`]"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "unvalidated_order",
+          "type": {
+            "defined": {
+              "name": "Order"
+            }
+          }
+        },
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "prepare_send",
+      "discriminator": [
+        177,
+        100,
+        244,
+        195,
+        126,
+        99,
+        57,
+        43
+      ],
+      "accounts": [
+        {
+          "name": "take_order_state"
+        },
+        {
+          "name": "send_from",
+          "docs": [
+            "👤 User Authority"
+          ],
+          "writable": true
+        },
+        {
+          "name": "send_from_wallet",
+          "docs": [
+            "👤 User token account from which money is sent"
+          ],
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "payer_wallet",
+          "writable": true
+        },
+        {
+          "name": "chain_support_info",
+          "docs": [
+            "The account that stores support and fee information for a specific chain"
+          ]
+        },
+        {
+          "name": "debridge_state"
+        },
+        {
+          "name": "system_program",
+          "docs": [
+            "Solana system program"
+          ]
+        },
+        {
+          "name": "spl_token_program",
+          "docs": [
+            "System spl token program"
+          ]
+        },
+        {
+          "name": "instructions"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "fulfill_order",
+      "docs": [
+        "Full filled order from other chain",
+        "",
+        "During the execution of this method, the [`dln_core::Order::take.amount`] of [`Order::take.token_address`] from the `taker` (minus patch amount if [`patch_take_order`] called previously)",
+        "will be sent to the [`Order::receiver_dst`]. After that, the `taker` will have the right to call `send_unlock` and receive the [`Order::give`] part in the [`Order::give.chain_id`] chain",
+        "",
+        "If an [`Order::external_call`] is presented, then this balance will be redirected to a special wallet, for subsequent use within the external call execution",
+        "",
+        "# Args",
+        "* `unvalidated_order` - Full order for fullfill",
+        "* `order_id` - identificator of order",
+        "",
+        "# Allowed",
+        "* If [`Order::allowed_taker_dst`] is None then anyone who have [`Order::take.amount`] of [`Order::take.token_mint`] token",
+        "* If [`Order::allowed_taker_dst`] is Some then only itself"
+      ],
+      "discriminator": [
+        61,
+        214,
+        39,
+        248,
+        65,
+        212,
+        153,
+        36
+      ],
+      "accounts": [
+        {
+          "name": "take_order_state",
+          "writable": true
+        },
+        {
+          "name": "taker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "taker_wallet",
+          "writable": true
+        },
+        {
+          "name": "receiver_dst",
+          "writable": true
+        },
+        {
+          "name": "authorized_src_contract"
+        },
+        {
+          "name": "take_order_patch"
+        },
+        {
+          "name": "spl_token_program"
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "unvalidated_order",
+          "type": {
+            "defined": {
+              "name": "Order"
+            }
+          }
+        },
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "unlock_authority",
+          "type": {
+            "option": "pubkey"
+          }
+        }
+      ]
+    },
+    {
+      "name": "patch_take_order",
+      "discriminator": [
+        143,
+        123,
+        133,
+        249,
+        52,
+        97,
+        111,
+        114
+      ],
+      "accounts": [
+        {
+          "name": "take_order_patch",
+          "writable": true
+        },
+        {
+          "name": "authorized_src_contract"
+        },
+        {
+          "name": "patcher",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "unvalidated_order",
+          "type": {
+            "defined": {
+              "name": "Order"
+            }
+          }
+        },
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_subtrahend",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "send_order_cancel",
+      "discriminator": [
+        40,
+        200,
+        11,
+        68,
+        214,
+        45,
+        181,
+        172
+      ],
+      "accounts": [
+        {
+          "name": "take_order_state",
+          "writable": true
+        },
+        {
+          "name": "canceler",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authorized_src_contract"
+        },
+        {
+          "name": "sending",
+          "accounts": [
+            {
+              "name": "nonce_storage",
+              "docs": [
+                "The task of this account is to store the Nonce, which is necessary for the uniqueness of each Send",
+                "Initialized on the fly, if needed"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from",
+              "docs": [
+                "👤 User Authority"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from_wallet",
+              "docs": [
+                "👤 User token account from which money is sent"
+              ],
+              "writable": true
+            },
+            {
+              "name": "system_program",
+              "docs": [
+                "Solana system program"
+              ]
+            },
+            {
+              "name": "external_call_storage",
+              "docs": [
+                "Storage for unlock\\cancel external call"
+              ],
+              "writable": true
+            },
+            {
+              "name": "external_call_meta",
+              "docs": [
+                "The account that stores information about external call current state.",
+                "",
+                "It has [`ExternalCallMeta'] structure and is initialized when `submission_params` is not None.",
+                "If `submission_params` is None this account is ignored"
+              ],
+              "writable": true
+            },
+            {
+              "name": "discount",
+              "docs": [
+                "The account allows the user to get a discount when using the bridge"
+              ]
+            },
+            {
+              "name": "bridge_fee",
+              "docs": [
+                "The account determines whether it is possible to take fix fee from sending tokens",
+                "and the percentage of these tokens. Otherwise fix fee in SOL is taken"
+              ]
+            },
+            {
+              "name": "bridge",
+              "docs": [
+                "The account contains all the information about the operation of the bridge",
+                "",
+                "There are the address of the token with which the bridge works,",
+                "the amount of liquidity stored, the collected fee amount and",
+                "the settings for the operation of the bridge"
+              ],
+              "writable": true
+            },
+            {
+              "name": "token_mint",
+              "docs": [
+                "The mint account of the token with which the bridge works"
+              ],
+              "writable": true
+            },
+            {
+              "name": "staking_wallet",
+              "docs": [
+                "The account stores the user's staking tokens and the fee collected by the bridge in tokens"
+              ],
+              "writable": true
+            },
+            {
+              "name": "mint_authority",
+              "docs": [
+                "The PDA that is the authorization for the transfer of tokens to the user",
+                "",
+                "It's wrapper token mint authority account for mint bridge,",
+                "staking token account owner for send bridge and changing",
+                "balance in bridge_data"
+              ]
+            },
+            {
+              "name": "chain_support_info",
+              "docs": [
+                "The account that stores support and fee information for a specific chain"
+              ]
+            },
+            {
+              "name": "settings_program",
+              "docs": [
+                "Debridge settings  program"
+              ]
+            },
+            {
+              "name": "spl_token_program",
+              "docs": [
+                "System spl token program"
+              ]
+            },
+            {
+              "name": "state",
+              "docs": [
+                "State account with service information",
+                "",
+                "This account from settings program is also a unique state for debridge program."
+              ],
+              "writable": true
+            },
+            {
+              "name": "fee_beneficiary",
+              "docs": [
+                "Beneficiary of the commission in the system",
+                "",
+                "The unique value of this account is stored in the state account",
+                "Implied that this will be an account belonging to another program (FeeProxy),",
+                "which will be responsible for the distribution of commissions"
+              ],
+              "writable": true
+            },
+            {
+              "name": "debridge_program"
+            }
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "cancel_beneficiary",
+          "type": "bytes"
+        },
+        {
+          "name": "execution_fee",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "send_unlock",
+      "docs": [
+        "Send unlock order in [`Order::give.chain_id`]",
+        "",
+        "If the order was filled and not unlocked yet, unlock authority from [`OrderState::FullFilled { unlock_authority }`] can unlock it and get the give part in [`Order::give.chain_id`] chain",
+        "In the receive chain, the `dln_src::claim_unlock` will be called",
+        "",
+        "# Args",
+        "* `order_id` - identificator of order",
+        "* `beneficiary` - Any address in [`Order::take.chain_id`] chain",
+        "* `execution_fee` - reward for executor in other chain, for auto-execute `dln_src::claim_unlock`",
+        "",
+        "# Allowed",
+        "By unlock authority stored in [`OrderTakeStatus#variant.Fulfilled`] only"
+      ],
+      "discriminator": [
+        197,
+        114,
+        196,
+        249,
+        170,
+        75,
+        173,
+        204
+      ],
+      "accounts": [
+        {
+          "name": "take_order_state",
+          "writable": true
+        },
+        {
+          "name": "unlocker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authorized_src_contract"
+        },
+        {
+          "name": "sending",
+          "accounts": [
+            {
+              "name": "nonce_storage",
+              "docs": [
+                "The task of this account is to store the Nonce, which is necessary for the uniqueness of each Send",
+                "Initialized on the fly, if needed"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from",
+              "docs": [
+                "👤 User Authority"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from_wallet",
+              "docs": [
+                "👤 User token account from which money is sent"
+              ],
+              "writable": true
+            },
+            {
+              "name": "system_program",
+              "docs": [
+                "Solana system program"
+              ]
+            },
+            {
+              "name": "external_call_storage",
+              "docs": [
+                "Storage for unlock\\cancel external call"
+              ],
+              "writable": true
+            },
+            {
+              "name": "external_call_meta",
+              "docs": [
+                "The account that stores information about external call current state.",
+                "",
+                "It has [`ExternalCallMeta'] structure and is initialized when `submission_params` is not None.",
+                "If `submission_params` is None this account is ignored"
+              ],
+              "writable": true
+            },
+            {
+              "name": "discount",
+              "docs": [
+                "The account allows the user to get a discount when using the bridge"
+              ]
+            },
+            {
+              "name": "bridge_fee",
+              "docs": [
+                "The account determines whether it is possible to take fix fee from sending tokens",
+                "and the percentage of these tokens. Otherwise fix fee in SOL is taken"
+              ]
+            },
+            {
+              "name": "bridge",
+              "docs": [
+                "The account contains all the information about the operation of the bridge",
+                "",
+                "There are the address of the token with which the bridge works,",
+                "the amount of liquidity stored, the collected fee amount and",
+                "the settings for the operation of the bridge"
+              ],
+              "writable": true
+            },
+            {
+              "name": "token_mint",
+              "docs": [
+                "The mint account of the token with which the bridge works"
+              ],
+              "writable": true
+            },
+            {
+              "name": "staking_wallet",
+              "docs": [
+                "The account stores the user's staking tokens and the fee collected by the bridge in tokens"
+              ],
+              "writable": true
+            },
+            {
+              "name": "mint_authority",
+              "docs": [
+                "The PDA that is the authorization for the transfer of tokens to the user",
+                "",
+                "It's wrapper token mint authority account for mint bridge,",
+                "staking token account owner for send bridge and changing",
+                "balance in bridge_data"
+              ]
+            },
+            {
+              "name": "chain_support_info",
+              "docs": [
+                "The account that stores support and fee information for a specific chain"
+              ]
+            },
+            {
+              "name": "settings_program",
+              "docs": [
+                "Debridge settings  program"
+              ]
+            },
+            {
+              "name": "spl_token_program",
+              "docs": [
+                "System spl token program"
+              ]
+            },
+            {
+              "name": "state",
+              "docs": [
+                "State account with service information",
+                "",
+                "This account from settings program is also a unique state for debridge program."
+              ],
+              "writable": true
+            },
+            {
+              "name": "fee_beneficiary",
+              "docs": [
+                "Beneficiary of the commission in the system",
+                "",
+                "The unique value of this account is stored in the state account",
+                "Implied that this will be an account belonging to another program (FeeProxy),",
+                "which will be responsible for the distribution of commissions"
+              ],
+              "writable": true
+            },
+            {
+              "name": "debridge_program"
+            }
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "beneficiary",
+          "type": "bytes"
+        },
+        {
+          "name": "execution_fee",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "send_batch_unlock",
+      "docs": [
+        "Send batch unlock order in [`Order::give.chain_id`]",
+        "",
+        "If the order was filled and not unlocked yet, unlock authority from [`OrderState::FullFilled { unlock_authority }`] can unlock it and get the give part in [`Order::give.chain_id`] chain",
+        "In the receive chain, the `dln_src::claim_unlock` will be called",
+        "",
+        "# Args",
+        "* `beneficiary` - Any address in [`Order::take.chain_id`] chain",
+        "* `execution_fee` - reward for executor in other chain, for auto-execute `dln_src::claim_unlock`",
+        "",
+        "# Allowed",
+        "By unlock authority stored in [`OrderTakeStatus#variant.Fulfilled`] only"
+      ],
+      "discriminator": [
+        44,
+        13,
+        156,
+        4,
+        235,
+        38,
+        183,
+        233
+      ],
+      "accounts": [
+        {
+          "name": "unlocker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authorized_src_contract"
+        },
+        {
+          "name": "sending",
+          "accounts": [
+            {
+              "name": "nonce_storage",
+              "docs": [
+                "The task of this account is to store the Nonce, which is necessary for the uniqueness of each Send",
+                "Initialized on the fly, if needed"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from",
+              "docs": [
+                "👤 User Authority"
+              ],
+              "writable": true
+            },
+            {
+              "name": "send_from_wallet",
+              "docs": [
+                "👤 User token account from which money is sent"
+              ],
+              "writable": true
+            },
+            {
+              "name": "system_program",
+              "docs": [
+                "Solana system program"
+              ]
+            },
+            {
+              "name": "external_call_storage",
+              "docs": [
+                "Storage for unlock\\cancel external call"
+              ],
+              "writable": true
+            },
+            {
+              "name": "external_call_meta",
+              "docs": [
+                "The account that stores information about external call current state.",
+                "",
+                "It has [`ExternalCallMeta'] structure and is initialized when `submission_params` is not None.",
+                "If `submission_params` is None this account is ignored"
+              ],
+              "writable": true
+            },
+            {
+              "name": "discount",
+              "docs": [
+                "The account allows the user to get a discount when using the bridge"
+              ]
+            },
+            {
+              "name": "bridge_fee",
+              "docs": [
+                "The account determines whether it is possible to take fix fee from sending tokens",
+                "and the percentage of these tokens. Otherwise fix fee in SOL is taken"
+              ]
+            },
+            {
+              "name": "bridge",
+              "docs": [
+                "The account contains all the information about the operation of the bridge",
+                "",
+                "There are the address of the token with which the bridge works,",
+                "the amount of liquidity stored, the collected fee amount and",
+                "the settings for the operation of the bridge"
+              ],
+              "writable": true
+            },
+            {
+              "name": "token_mint",
+              "docs": [
+                "The mint account of the token with which the bridge works"
+              ],
+              "writable": true
+            },
+            {
+              "name": "staking_wallet",
+              "docs": [
+                "The account stores the user's staking tokens and the fee collected by the bridge in tokens"
+              ],
+              "writable": true
+            },
+            {
+              "name": "mint_authority",
+              "docs": [
+                "The PDA that is the authorization for the transfer of tokens to the user",
+                "",
+                "It's wrapper token mint authority account for mint bridge,",
+                "staking token account owner for send bridge and changing",
+                "balance in bridge_data"
+              ]
+            },
+            {
+              "name": "chain_support_info",
+              "docs": [
+                "The account that stores support and fee information for a specific chain"
+              ]
+            },
+            {
+              "name": "settings_program",
+              "docs": [
+                "Debridge settings  program"
+              ]
+            },
+            {
+              "name": "spl_token_program",
+              "docs": [
+                "System spl token program"
+              ]
+            },
+            {
+              "name": "state",
+              "docs": [
+                "State account with service information",
+                "",
+                "This account from settings program is also a unique state for debridge program."
+              ],
+              "writable": true
+            },
+            {
+              "name": "fee_beneficiary",
+              "docs": [
+                "Beneficiary of the commission in the system",
+                "",
+                "The unique value of this account is stored in the state account",
+                "Implied that this will be an account belonging to another program (FeeProxy),",
+                "which will be responsible for the distribution of commissions"
+              ],
+              "writable": true
+            },
+            {
+              "name": "debridge_program"
+            }
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "beneficiary",
+          "type": "bytes"
+        },
+        {
+          "name": "execution_fee",
+          "type": "u64"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "takeOrderPatch",
+      "discriminator": [
+        138,
+        112,
+        38,
+        132,
+        187,
+        6,
+        169,
+        235
+      ]
+    },
+    {
+      "name": "authorizedSrcContract",
+      "discriminator": [
+        53,
+        68,
+        38,
+        179,
+        142,
+        197,
+        150,
+        197
+      ]
+    },
+    {
+      "name": "takeOrderState",
+      "discriminator": [
+        147,
+        214,
+        97,
+        159,
+        59,
+        67,
+        236,
+        166
+      ]
+    },
+    {
+      "name": "state",
+      "discriminator": [
+        146,
+        10,
+        19,
+        112,
+        191,
+        43,
+        175,
+        106
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "StateInitialized",
+      "discriminator": [
+        87,
+        122,
+        98,
+        236,
+        219,
+        55,
+        5,
+        98
+      ]
+    },
+    {
+      "name": "Fulfilled",
+      "discriminator": [
+        210,
+        174,
+        131,
+        213,
+        40,
+        182,
+        83,
+        110
+      ]
+    },
+    {
+      "name": "SentUnlock",
+      "discriminator": [
+        80,
+        95,
+        27,
+        102,
+        221,
+        162,
+        177,
+        24
+      ]
+    },
+    {
+      "name": "SentOrderCancel",
+      "discriminator": [
+        78,
+        205,
+        115,
+        248,
+        199,
+        138,
+        234,
+        42
+      ]
+    },
+    {
+      "name": "OrderCancelled",
+      "discriminator": [
+        108,
+        56,
+        128,
+        68,
+        168,
+        113,
+        168,
+        239
+      ]
+    },
+    {
+      "name": "DecreaseTakeAmount",
+      "discriminator": [
+        7,
+        219,
+        41,
+        79,
+        233,
+        63,
+        20,
+        0
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "WrongAmount"
+    },
+    {
+      "code": 6001,
+      "name": "WrongBeneficiarySize"
+    },
+    {
+      "code": 6002,
+      "name": "WrongChainId"
+    },
+    {
+      "code": 6003,
+      "name": "WrongMint"
+    },
+    {
+      "code": 6004,
+      "name": "WrongOrderId"
+    },
+    {
+      "code": 6005,
+      "name": "WrongPrepareSendNextIxDiscriminator"
+    },
+    {
+      "code": 6006,
+      "name": "WrongPrepareSendNextIxProgramId"
+    },
+    {
+      "code": 6007,
+      "name": "WrongReceiverWalletOwner"
+    },
+    {
+      "code": 6008,
+      "name": "WrongTakerAta"
+    },
+    {
+      "code": 6009,
+      "name": "WrongReceiverAta"
+    },
+    {
+      "code": 6010,
+      "name": "WrongTakeTokenAddress"
+    },
+    {
+      "code": 6011,
+      "name": "WrongNativeTaker"
+    },
+    {
+      "code": 6012,
+      "name": "WrongNativeDst"
+    },
+    {
+      "code": 6013,
+      "name": "WrongTakeOrderPatch"
+    },
+    {
+      "code": 6014,
+      "name": "WrongAuthorizedSrcContract"
+    },
+    {
+      "code": 6015,
+      "name": "CalculationOrderIdError"
+    },
+    {
+      "code": 6016,
+      "name": "UnlockNotAllowed"
+    },
+    {
+      "code": 6017,
+      "name": "FixedFeeCalculationError"
+    },
+    {
+      "code": 6018,
+      "name": "NotAllowedEmptyBatch"
+    },
+    {
+      "code": 6019,
+      "name": "NotAllowedCancelBeneficiary"
+    },
+    {
+      "code": 6020,
+      "name": "NotAllowedTaker"
+    },
+    {
+      "code": 6021,
+      "name": "InvalidAllowedCancelBeneficiarySrcSize"
+    },
+    {
+      "code": 6022,
+      "name": "InvalidMakerSrcSize"
+    },
+    {
+      "code": 6023,
+      "name": "InvalidGivePatchAuthoritySrcSize"
+    },
+    {
+      "code": 6024,
+      "name": "InvalidReceiverDstSize"
+    },
+    {
+      "code": 6025,
+      "name": "InvalidOrderAuthorityDstSize"
+    },
+    {
+      "code": 6026,
+      "name": "InvalidAllowedTakerDst"
+    },
+    {
+      "code": 6027,
+      "name": "InvalidTakeOfferAmount"
+    },
+    {
+      "code": 6028,
+      "name": "MatchOverflowWhileCalculateInputAmount"
+    },
+    {
+      "code": 6029,
+      "name": "OverflowWhileApplyTakeOrderPatch"
+    },
+    {
+      "code": 6030,
+      "name": "ChainPaused"
+    },
+    {
+      "code": 6031,
+      "name": "WrongSigner"
+    },
+    {
+      "code": 6032,
+      "name": "ReallocNotNeeded"
+    },
+    {
+      "code": 6033,
+      "name": "OverflowError"
+    }
+  ],
+  "types": [
+    {
+      "name": "Order",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "maker_order_nonce",
+            "docs": [
+              "Unique nonce number for each maker",
+              "Together with the maker, it forms the uniqueness for the order,",
+              "which is important for calculating the order id"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "maker_src",
+            "docs": [
+              "Order maker address",
+              "Address in source chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "give",
+            "docs": [
+              "Offer given on source chain"
+            ],
+            "type": {
+              "defined": {
+                "name": "Offer"
+              }
+            }
+          },
+          {
+            "name": "take",
+            "docs": [
+              "Offer to take in destination chain"
+            ],
+            "type": {
+              "defined": {
+                "name": "Offer"
+              }
+            }
+          },
+          {
+            "name": "receiver_dst",
+            "docs": [
+              "Address in dst chain",
+              "Address of receiver_dst of tokens in target chain",
+              "or",
+              "address of external call executor if `external_call` presented"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "give_patch_authority_src",
+            "docs": [
+              "Address in source chain",
+              "Can `patch_order_give`"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "order_authority_address_dst",
+            "docs": [
+              "Address in destination chain",
+              "Can `send_order_cancel`, `process_fallback` and `patch_order_take`"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "allowed_taker_dst",
+            "docs": [
+              "Address in destination chain",
+              "If the field is `Some`, then only this address can call `full_fill_order` with this",
+              "order"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          },
+          {
+            "name": "allowed_cancel_beneficiary_src",
+            "docs": [
+              "Address in source chain",
+              "If the field is `Some`, then only this address can receive cancel"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          },
+          {
+            "name": "external_call",
+            "docs": [
+              "External call for automatically execution in target chain after execution of order"
+            ],
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "ExternalCallParams"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExternalCallParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "external_call_shortcut",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Offer",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "chain_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "token_address",
+            "type": "bytes"
+          },
+          {
+            "name": "amount",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "EvmClaimInstruction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ClaimOrderCancel"
+          },
+          {
+            "name": "ClaimUnlock"
+          }
+        ]
+      }
+    },
+    {
+      "name": "EvmClaimBatchInstruction",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "ClaimBatchUnlock"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OrderTakeStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "OldFulfilled",
+            "fields": [
+              {
+                "name": "unlock_authority",
+                "type": "pubkey"
+              }
+            ]
+          },
+          {
+            "name": "SentUnlock",
+            "fields": [
+              {
+                "name": "unlocker",
+                "type": "pubkey"
+              }
+            ]
+          },
+          {
+            "name": "Cancelled",
+            "fields": [
+              {
+                "name": "canceler",
+                "type": "pubkey"
+              },
+              {
+                "name": "allowed_cancel_beneficiary_src",
+                "type": {
+                  "option": "bytes"
+                }
+              }
+            ]
+          },
+          {
+            "name": "SentCancel",
+            "fields": [
+              {
+                "name": "canceler",
+                "type": "pubkey"
+              }
+            ]
+          },
+          {
+            "name": "Fulfilled",
+            "fields": [
+              {
+                "name": "unlock_authority",
+                "type": "pubkey"
+              },
+              {
+                "name": "order_id",
+                "type": {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "takeOrderPatch",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_take_final_amount",
+            "type": {
+              "option": "u64"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "authorizedSrcContract",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "src_contract",
+            "type": "bytes"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "is_working",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "takeOrderState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_state",
+            "type": {
+              "defined": {
+                "name": "OrderTakeStatus"
+              }
+            }
+          },
+          {
+            "name": "source_chain_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "state",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "protocol_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "stop_tap",
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "StateInitialized",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "protocol_authority",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Fulfilled",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "taker",
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "SentUnlock",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "SentOrderCancel",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "OrderCancelled",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "DecreaseTakeAmount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "order_take_final_amount",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

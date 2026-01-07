@@ -22,7 +22,7 @@ function getDirestionFromArgv(): Direction {
   return arg ? arg as Direction : Direction.up; 
 }
  
-async function migrateToLatest() {  
+async function migrate() {  
   const direction = getDirestionFromArgv();
   
   const migrator = new Migrator({
@@ -60,7 +60,7 @@ async function migrateToLatest() {
   await db.destroy()
 }
 
-migrateToLatest().catch(err => { 
+migrate().catch(err => { 
   console.error(err); 
   process.exit(1)
 })

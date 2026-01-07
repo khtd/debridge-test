@@ -8,8 +8,10 @@
   ],
   "scripts": {
     "clean": "node scripts/clean.mjs",
-    "migrate": "npm run migrate --workspace @debridge-test/db",
-    "migrate:down": "npm run migrate:down --workspace @debridge-test/db"
+    "migrate:dev": "npm run migrate:dev --workspace @debridge-test/db",
+    "migrate:latest": "npm run migrate:latest --workspace @debridge-test/db",
+    "migrate:down": "npm run migrate:down --workspace @debridge-test/db",
+    "gen:db-types": "npm run gen:db-types --workspace @debridge-test/db"
   },
   "author": "sonya agranov",
   "license": "ISC",

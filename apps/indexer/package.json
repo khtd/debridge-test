@@ -7,10 +7,11 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.29.0",
     "@debridge-test/common": "*",
     "@debridge-test/db": "*",
     "@debridge-test/dln-idl": "*",
-    "@solana/kit": "^5.1.0",
+    "@solana/web3.js": "^1.98.4",
     "envalid": "^8.1.1"
   }
 }

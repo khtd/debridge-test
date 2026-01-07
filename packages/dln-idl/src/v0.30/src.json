@@ -1,0 +1,1902 @@
+{
+  "address": "src5qyZHqTqecJV4aY6Cb6zDZLMDzrDKKezs22MPHr4",
+  "metadata": {
+    "name": "dln_src",
+    "version": "3.0.0",
+    "spec": "0.1.0"
+  },
+  "instructions": [
+    {
+      "name": "initialize_state",
+      "discriminator": [
+        190,
+        171,
+        224,
+        219,
+        217,
+        72,
+        199,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "fee_ledger",
+          "writable": true
+        }
+      ],
+      "args": [
+        {
+          "name": "new_state",
+          "type": {
+            "defined": {
+              "name": "NewState"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "realloc_state",
+      "discriminator": [
+        67,
+        181,
+        233,
+        214,
+        215,
+        148,
+        245,
+        126
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "set_fixed_fee",
+      "discriminator": [
+        238,
+        14,
+        137,
+        181,
+        156,
+        157,
+        55,
+        27
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "fixed_fee",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_percent_fee_bps",
+      "discriminator": [
+        115,
+        39,
+        161,
+        77,
+        175,
+        252,
+        152,
+        141
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "percent_fee_bps",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "set_is_fee_refund",
+      "discriminator": [
+        127,
+        239,
+        175,
+        39,
+        72,
+        244,
+        47,
+        33
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "is_fee_refund",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "set_fee_beneficiry",
+      "discriminator": [
+        35,
+        243,
+        194,
+        253,
+        151,
+        40,
+        229,
+        251
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee_beneficiary",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_stop_tap",
+      "discriminator": [
+        80,
+        3,
+        201,
+        203,
+        245,
+        184,
+        51,
+        5
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "stop_tap",
+          "type": "pubkey"
+        }
+      ]
+    },
+    {
+      "name": "set_protocol_authority",
+      "discriminator": [
+        96,
+        162,
+        46,
+        152,
+        72,
+        147,
+        175,
+        176
+      ],
+      "accounts": [
+        {
+          "name": "update_state",
+          "accounts": [
+            {
+              "name": "state",
+              "docs": [
+                "State account with service information",
+                "There is a single state account for the entire program"
+              ],
+              "writable": true
+            },
+            {
+              "name": "protocol_authority",
+              "writable": true,
+              "signer": true
+            },
+            {
+              "name": "system_program"
+            }
+          ]
+        },
+        {
+          "name": "new_protocol_authority",
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "pause_state",
+      "discriminator": [
+        44,
+        86,
+        151,
+        21,
+        158,
+        185,
+        8,
+        36
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "stop_tap",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "unpause_state",
+      "discriminator": [
+        133,
+        243,
+        138,
+        167,
+        154,
+        215,
+        251,
+        167
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "update_authorized_native_sender",
+      "discriminator": [
+        213,
+        75,
+        181,
+        116,
+        29,
+        225,
+        125,
+        209
+      ],
+      "accounts": [
+        {
+          "name": "state",
+          "docs": [
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ]
+        },
+        {
+          "name": "protocol_authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "authorized_native_sender",
+          "writable": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "chain_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "new_authorized_native_sender",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "create_order",
+      "docs": [
+        "Create new order for dln system",
+        "",
+        "# Args",
+        "* `order_args` - Input parameters for new order",
+        "* `affiliate_fee` - Additional optional commission charged by integrators of DLN",
+        "* `referral_code` - referral code, if Some then used in event",
+        "",
+        "# Allowed",
+        "Anyone who have [`CreateOrderArgs::give_original_amount`] of [`CreatingOrder::token_mint`] token"
+      ],
+      "discriminator": [
+        141,
+        54,
+        37,
+        207,
+        237,
+        210,
+        250,
+        215
+      ],
+      "accounts": [
+        {
+          "name": "maker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state"
+        },
+        {
+          "name": "token_mint"
+        },
+        {
+          "name": "give_order_state",
+          "docs": [
+            "Account with GiveOrderState",
+            "seeds = [GiveOrderState::SEED, &order_id.to_bytes()],",
+            "Will be initialized inside [`create_order`]"
+          ],
+          "writable": true
+        },
+        {
+          "name": "authorized_native_sender"
+        },
+        {
+          "name": "maker_wallet",
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "docs": [
+            "Wallet of `give_order_state`",
+            "Will be initialized inside [`create_order`]"
+          ],
+          "writable": true
+        },
+        {
+          "name": "nonce_master",
+          "writable": true
+        },
+        {
+          "name": "fee_ledger_wallet",
+          "writable": true
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "spl_token_program"
+        },
+        {
+          "name": "associated_spl_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "order_args",
+          "type": {
+            "defined": {
+              "name": "CreateOrderArgs"
+            }
+          }
+        },
+        {
+          "name": "affiliate_fee",
+          "type": {
+            "option": {
+              "defined": {
+                "name": "AffiliateFee"
+              }
+            }
+          }
+        },
+        {
+          "name": "referral_code",
+          "type": {
+            "option": "u32"
+          }
+        }
+      ]
+    },
+    {
+      "name": "CreateOrderWithNonce",
+      "docs": [
+        "Create new order for dln system",
+        "",
+        "# Args",
+        "* `order_args` - Input parameters for new order",
+        "* `affiliate_fee` - Additional optional commission charged by integrators of DLN",
+        "* `referral_code` - referral code, if Some then used in event",
+        "* `nonce` - salt to make the order unique",
+        "",
+        "# Allowed",
+        "Anyone who have [`CreateOrderArgs::give_original_amount`] of [`CreatingOrder::token_mint`] token"
+      ],
+      "discriminator": [
+        130,
+        131,
+        98,
+        190,
+        40,
+        206,
+        68,
+        50
+      ],
+      "accounts": [
+        {
+          "name": "maker",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state"
+        },
+        {
+          "name": "token_mint"
+        },
+        {
+          "name": "give_order_state",
+          "docs": [
+            "Account with GiveOrderState",
+            "seeds = [GiveOrderState::SEED, &order_id.to_bytes()],",
+            "Will be initialized inside [`create_order`]"
+          ],
+          "writable": true
+        },
+        {
+          "name": "authorized_native_sender"
+        },
+        {
+          "name": "maker_wallet",
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "docs": [
+            "Wallet of `give_order_state`",
+            "Will be initialized inside [`create_order`]"
+          ],
+          "writable": true
+        },
+        {
+          "name": "nonce_master",
+          "writable": true
+        },
+        {
+          "name": "fee_ledger_wallet",
+          "writable": true
+        },
+        {
+          "name": "system_program"
+        },
+        {
+          "name": "spl_token_program"
+        },
+        {
+          "name": "associated_spl_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "order_args",
+          "type": {
+            "defined": {
+              "name": "CreateOrderArgs"
+            }
+          }
+        },
+        {
+          "name": "affiliate_fee",
+          "type": {
+            "option": {
+              "defined": {
+                "name": "AffiliateFee"
+              }
+            }
+          }
+        },
+        {
+          "name": "referral_code",
+          "type": {
+            "option": "u32"
+          }
+        },
+        {
+          "name": "nonce",
+          "type": "u64"
+        },
+        {
+          "name": "metadata",
+          "type": "bytes"
+        }
+      ]
+    },
+    {
+      "name": "patch_order_give",
+      "discriminator": [
+        64,
+        188,
+        129,
+        255,
+        64,
+        129,
+        139,
+        102
+      ],
+      "accounts": [
+        {
+          "name": "give_order_state",
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "writable": true
+        },
+        {
+          "name": "give_patch_authority",
+          "signer": true
+        },
+        {
+          "name": "give_patch_authority_wallet",
+          "writable": true
+        },
+        {
+          "name": "state"
+        },
+        {
+          "name": "spl_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "input_addition_to_give_amount",
+          "type": "u64"
+        }
+      ]
+    },
+    {
+      "name": "claim_unlock",
+      "docs": [
+        "Claim unlock from order take chain",
+        "Implying that the order was fulfilled and sent unlock by taker from [`OrderState::FullFilled { taker }`]",
+        "",
+        "# Args",
+        "* `order_id` - order id for claim",
+        "",
+        "# Allowed",
+        "Only debridge external call executor with debridge transaction in source chain from taker of order"
+      ],
+      "discriminator": [
+        89,
+        81,
+        180,
+        79,
+        142,
+        144,
+        66,
+        251
+      ],
+      "accounts": [
+        {
+          "name": "submission",
+          "docs": [
+            "0"
+          ]
+        },
+        {
+          "name": "submission_authority",
+          "docs": [
+            "1"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state",
+          "docs": [
+            "2",
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "fee_ledger",
+          "docs": [
+            "3"
+          ],
+          "writable": true
+        },
+        {
+          "name": "fee_ledger_wallet",
+          "docs": [
+            "4"
+          ],
+          "writable": true
+        },
+        {
+          "name": "instructions",
+          "docs": [
+            "5"
+          ]
+        },
+        {
+          "name": "give_order_state",
+          "docs": [
+            "6"
+          ],
+          "writable": true
+        },
+        {
+          "name": "action_beneficiary_wallet",
+          "docs": [
+            "Action beneficiary ATA",
+            "If empty, then automatically initialized ATA (determined based on [`AccountInfo::owner`])"
+          ],
+          "writable": true
+        },
+        {
+          "name": "action_beneficiary",
+          "docs": [
+            "8"
+          ],
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "docs": [
+            "9"
+          ],
+          "writable": true
+        },
+        {
+          "name": "token_mint",
+          "docs": [
+            "10"
+          ]
+        },
+        {
+          "name": "authorized_native_sender",
+          "docs": [
+            "11"
+          ]
+        },
+        {
+          "name": "spl_token_program",
+          "docs": [
+            "12"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "claim_order_cancel",
+      "docs": [
+        "Claim cancel from order take chain",
+        "Implying that the order was not fulfilled and sent canceled by [`Order::order_authority_address_dst`]",
+        "",
+        "# Args",
+        "* `order_id` - order id for claim",
+        "",
+        "# Allowed",
+        "Only debridge external call executor with debridge transaction in source chain from [`Order::order_authority_address_dst`]"
+      ],
+      "discriminator": [
+        19,
+        97,
+        126,
+        238,
+        204,
+        141,
+        69,
+        76
+      ],
+      "accounts": [
+        {
+          "name": "submission",
+          "docs": [
+            "0"
+          ]
+        },
+        {
+          "name": "submission_authority",
+          "docs": [
+            "1"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "state",
+          "docs": [
+            "2",
+            "State account with service information",
+            "There is a single state account for the entire program"
+          ],
+          "writable": true
+        },
+        {
+          "name": "fee_ledger",
+          "docs": [
+            "3"
+          ],
+          "writable": true
+        },
+        {
+          "name": "fee_ledger_wallet",
+          "docs": [
+            "4"
+          ],
+          "writable": true
+        },
+        {
+          "name": "instructions",
+          "docs": [
+            "5"
+          ]
+        },
+        {
+          "name": "give_order_state",
+          "docs": [
+            "6"
+          ],
+          "writable": true
+        },
+        {
+          "name": "action_beneficiary_wallet",
+          "docs": [
+            "Action beneficiary ATA",
+            "If empty, then automatically initialized ATA (determined based on [`AccountInfo::owner`])"
+          ],
+          "writable": true
+        },
+        {
+          "name": "action_beneficiary",
+          "docs": [
+            "8"
+          ],
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "docs": [
+            "9"
+          ],
+          "writable": true
+        },
+        {
+          "name": "token_mint",
+          "docs": [
+            "10"
+          ]
+        },
+        {
+          "name": "authorized_native_sender",
+          "docs": [
+            "11"
+          ]
+        },
+        {
+          "name": "spl_token_program",
+          "docs": [
+            "12"
+          ]
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "withdraw_fix_fee",
+      "discriminator": [
+        24,
+        156,
+        23,
+        253,
+        46,
+        76,
+        247,
+        202
+      ],
+      "accounts": [
+        {
+          "name": "state"
+        },
+        {
+          "name": "fee_ledger",
+          "writable": true
+        },
+        {
+          "name": "fee_beneficiary",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "system_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw_percent_fee",
+      "discriminator": [
+        50,
+        219,
+        95,
+        73,
+        93,
+        162,
+        245,
+        14
+      ],
+      "accounts": [
+        {
+          "name": "withdraw_fee",
+          "accounts": [
+            {
+              "name": "state"
+            },
+            {
+              "name": "fee_ledger",
+              "writable": true
+            },
+            {
+              "name": "fee_beneficiary",
+              "writable": true,
+              "signer": true
+            },
+            {
+              "name": "system_program"
+            }
+          ]
+        },
+        {
+          "name": "fee_ledger_wallet",
+          "writable": true
+        },
+        {
+          "name": "fee_beneficiary_wallet",
+          "writable": true
+        },
+        {
+          "name": "token_mint"
+        },
+        {
+          "name": "spl_token_program"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "withdraw_affiliate_fee",
+      "discriminator": [
+        143,
+        79,
+        158,
+        208,
+        125,
+        51,
+        86,
+        85
+      ],
+      "accounts": [
+        {
+          "name": "affiliate_fee_beneficiary",
+          "signer": true
+        },
+        {
+          "name": "affiliate_fee_wallet",
+          "writable": true
+        },
+        {
+          "name": "give_order_state",
+          "writable": true
+        },
+        {
+          "name": "give_order_wallet",
+          "writable": true
+        },
+        {
+          "name": "spl_token_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "order_id",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "state",
+      "discriminator": [
+        146,
+        10,
+        19,
+        112,
+        191,
+        43,
+        175,
+        106
+      ]
+    },
+    {
+      "name": "giveOrderState",
+      "discriminator": [
+        62,
+        200,
+        109,
+        228,
+        254,
+        27,
+        147,
+        148
+      ]
+    },
+    {
+      "name": "nonceMaster",
+      "discriminator": [
+        253,
+        24,
+        171,
+        44,
+        200,
+        204,
+        206,
+        81
+      ]
+    },
+    {
+      "name": "authorizedNativeSender",
+      "discriminator": [
+        253,
+        238,
+        80,
+        139,
+        23,
+        160,
+        35,
+        15
+      ]
+    }
+  ],
+  "events": [
+    {
+      "name": "CreatedOrder",
+      "discriminator": [
+        106,
+        87,
+        74,
+        230,
+        32,
+        120,
+        71,
+        210
+      ]
+    },
+    {
+      "name": "CreatedOrderId",
+      "discriminator": [
+        187,
+        41,
+        27,
+        73,
+        12,
+        63,
+        13,
+        84
+      ]
+    },
+    {
+      "name": "ClaimedOrderCancel",
+      "discriminator": [
+        98,
+        176,
+        8,
+        102,
+        211,
+        245,
+        60,
+        182
+      ]
+    },
+    {
+      "name": "ClaimedUnlock",
+      "discriminator": [
+        200,
+        45,
+        167,
+        251,
+        49,
+        232,
+        91,
+        13
+      ]
+    },
+    {
+      "name": "IncreasedGiveAmount",
+      "discriminator": [
+        6,
+        189,
+        113,
+        78,
+        139,
+        50,
+        136,
+        69
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "GiveOrderStateWrongPubkey",
+      "msg": "Order state-account have wrong pubkey. Perhaps you miscalculated order_id."
+    },
+    {
+      "code": 6001,
+      "name": "GiveOrderStateWrongStatus",
+      "msg": "Order state-account have wrong status, for this action."
+    },
+    {
+      "code": 6002,
+      "name": "GiveOrderWalletWrongPubkey",
+      "msg": "Order wallet-account have wrong pubkey. Perhaps you miscalculated order_id."
+    },
+    {
+      "code": 6003,
+      "name": "CalculationOrderIdError",
+      "msg": "Can't calculate order id. Wrong input arguments."
+    },
+    {
+      "code": 6004,
+      "name": "OverflowError",
+      "msg": "Incoming data resulted in match-overflow error."
+    },
+    {
+      "code": 6005,
+      "name": "OrderAlreadyProcessed",
+      "msg": "Order already processed. Can't do this action."
+    },
+    {
+      "code": 6006,
+      "name": "WrongPatchAmount",
+      "msg": "Too little patch for give amount. Please add more"
+    },
+    {
+      "code": 6007,
+      "name": "WrongClaimParentProgramId",
+      "msg": "Wrong parent ix program id. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6008,
+      "name": "WrongClaimParentInstruction",
+      "msg": "Wrong parent ix. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6009,
+      "name": "WrongClaimParentInstructionAccounts",
+      "msg": "Wrong parent ix accounts. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6010,
+      "name": "WrongClaimParentSubmission",
+      "msg": "Wrong parent ix submission. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6011,
+      "name": "WrongClaimParentSubmissionAuth",
+      "msg": "Wrong parent debridge-submission authority. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6012,
+      "name": "WrongClaimParentNativeSender",
+      "msg": "Wrong parent debridge-submission native sender. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6013,
+      "name": "WrongClaimParentSourceChain",
+      "msg": "Wrong parent debridge-submission source chain. This method must be called by debridge program in execute_external call"
+    },
+    {
+      "code": 6014,
+      "name": "BadReceiverDstSize",
+      "msg": "Wrong size of receiver address for this chain"
+    },
+    {
+      "code": 6015,
+      "name": "BadOrderAuthorityDstSize",
+      "msg": "Wrong size of order authority address for this chain"
+    },
+    {
+      "code": 6016,
+      "name": "BadAllowedTakerDst",
+      "msg": "Wrong size of allowed taker address for this chain"
+    },
+    {
+      "code": 6017,
+      "name": "BadFallbackAddressDstSize",
+      "msg": "Wrong size of fallback address address for this chain"
+    },
+    {
+      "code": 6018,
+      "name": "AffiliateFeeNotReadyToPay",
+      "msg": "Affiliate fee already paid or not exists"
+    },
+    {
+      "code": 6019,
+      "name": "FixFeeAlreadyPaid",
+      "msg": "Fix fee already paid"
+    },
+    {
+      "code": 6020,
+      "name": "PercentFeeAlreadyPaid",
+      "msg": "Percent fee already paid"
+    },
+    {
+      "code": 6021,
+      "name": "ExternalCallDisables",
+      "msg": "Orders with external call not allowed right now"
+    },
+    {
+      "code": 6022,
+      "name": "FeeLedgerWalletWrongKey",
+      "msg": "Fee ledger wallet pubkey miscalculated"
+    },
+    {
+      "code": 6023,
+      "name": "NotAllowedCancelBeneficiary",
+      "msg": "Cancel beneficiary not allowed, use cancel-beneficiary from order state-account"
+    },
+    {
+      "code": 6024,
+      "name": "StatePaused",
+      "msg": "The action cannot be continued, the program-state is on pause"
+    },
+    {
+      "code": 6025,
+      "name": "StateWorking",
+      "msg": "Can't unpause because the program is already running"
+    },
+    {
+      "code": 6026,
+      "name": "WrongSigner",
+      "msg": "Wrong signer for realloc"
+    },
+    {
+      "code": 6027,
+      "name": "ReallocNotNeeded",
+      "msg": "Realloc not needed, new space equal to old one"
+    },
+    {
+      "code": 6028,
+      "name": "WrongExtcallIdError",
+      "msg": "Failed to parse extcall program id from receiver_dst field."
+    }
+  ],
+  "types": [
+    {
+      "name": "Order",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "maker_order_nonce",
+            "docs": [
+              "Unique nonce number for each maker",
+              "Together with the maker, it forms the uniqueness for the order,",
+              "which is important for calculating the order id"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "maker_src",
+            "docs": [
+              "Order maker address",
+              "Address in source chain"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "give",
+            "docs": [
+              "Offer given on source chain"
+            ],
+            "type": {
+              "defined": {
+                "name": "Offer"
+              }
+            }
+          },
+          {
+            "name": "take",
+            "docs": [
+              "Offer to take in destination chain"
+            ],
+            "type": {
+              "defined": {
+                "name": "Offer"
+              }
+            }
+          },
+          {
+            "name": "receiver_dst",
+            "docs": [
+              "Address in dst chain",
+              "Address of receiver_dst of tokens in target chain",
+              "or",
+              "address of external call executor if `external_call` presented"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "give_patch_authority_src",
+            "docs": [
+              "Address in source chain",
+              "Can `patch_order_give`"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "order_authority_address_dst",
+            "docs": [
+              "Address in destination chain",
+              "Can `send_order_cancel`, `process_fallback` and `patch_order_take`"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "allowed_taker_dst",
+            "docs": [
+              "Address in destination chain",
+              "If the field is `Some`, then only this address can call `full_fill_order` with this",
+              "order"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          },
+          {
+            "name": "allowed_cancel_beneficiary_src",
+            "docs": [
+              "Address in source chain",
+              "If the field is `Some`, then only this address can receive cancel"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          },
+          {
+            "name": "external_call",
+            "docs": [
+              "External call for automatically execution in target chain after execution of order"
+            ],
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "ExternalCallParams"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ExternalCallParams",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "external_call_shortcut",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Offer",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "chain_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "token_address",
+            "type": "bytes"
+          },
+          {
+            "name": "amount",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "NewState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "fixed_fee",
+            "docs": [
+              "Fixed fee in native chain tokes"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "percent_fee_bps",
+            "docs": [
+              "Fee as bps of process amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "is_fee_refund",
+            "docs": [
+              "If true in `claim_order_cancel` we return fix fee back to maker"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "fee_beneficiary",
+            "docs": [
+              "Address for transfers fees"
+            ],
+            "type": "pubkey"
+          }
+        ]
+      }
+    },
+    {
+      "name": "AffiliateFee",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "beneficiary",
+            "type": "pubkey"
+          },
+          {
+            "name": "amount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateOrderArgs",
+      "docs": [
+        "Structure for forming a new order"
+      ],
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "give_original_amount",
+            "docs": [
+              "Input amount for `create order` call, that will be transferred from the user's wallet.",
+              "The dln commissions will be deducted from it and the resulting value will be used as [`Order::give.amount`]"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "take",
+            "docs": [
+              "Offer to take in destination chain"
+            ],
+            "type": {
+              "defined": {
+                "name": "Offer"
+              }
+            }
+          },
+          {
+            "name": "receiver_dst",
+            "docs": [
+              "Address in dst chain",
+              "Address of receiver_dst of tokens in target chain",
+              "or",
+              "address of external call executor if `external_call` presented"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "external_call",
+            "docs": [
+              "External call for automatically execution in target chain after execution of order"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          },
+          {
+            "name": "give_patch_authority_src",
+            "docs": [
+              "Address in source chain",
+              "Can call `patch_order_give` method of src program"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "allowed_cancel_beneficiary_src",
+            "docs": [
+              "Address in source chain",
+              "If the field is `Some`, then only this address can receive cancel"
+            ],
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "order_authority_address_dst",
+            "docs": [
+              "Address in destination chain",
+              "Can `send_order_cancel`, `process_fallback` and `patch_order_take`"
+            ],
+            "type": "bytes"
+          },
+          {
+            "name": "allowed_taker_dst",
+            "docs": [
+              "Address in destination chain",
+              "If the field is `Some`, then only this address can call `fulfill_order` with this",
+              "order"
+            ],
+            "type": {
+              "option": "bytes"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "GiveOrderStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Created",
+            "fields": [
+              {
+                "name": "give_amount",
+                "type": {
+                  "option": "u64"
+                }
+              },
+              {
+                "name": "fix_fee",
+                "type": {
+                  "option": "u64"
+                }
+              },
+              {
+                "name": "percent_fee",
+                "type": {
+                  "option": "u64"
+                }
+              },
+              {
+                "name": "affiliate_fee",
+                "type": {
+                  "option": {
+                    "defined": {
+                      "name": "AffiliateFee"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "allowed_cancel_beneficiary",
+                "type": {
+                  "option": "pubkey"
+                }
+              },
+              {
+                "name": "give_patch_authority",
+                "type": "pubkey"
+              },
+              {
+                "name": "take_chain_id",
+                "type": {
+                  "array": [
+                    "u8",
+                    32
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "ClaimedUnlock",
+            "fields": [
+              {
+                "name": "affiliate_fee",
+                "type": {
+                  "option": {
+                    "defined": {
+                      "name": "AffiliateFee"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "name": "ClaimedCancel",
+            "fields": [
+              {
+                "name": "affiliate_fee",
+                "type": {
+                  "option": {
+                    "defined": {
+                      "name": "AffiliateFee"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "state",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "protocol_authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fixed_fee",
+            "docs": [
+              "Fixed fee in native chain tokes"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "percent_fee_bps",
+            "docs": [
+              "Fee as bps of process amount"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "is_fee_refund",
+            "docs": [
+              "If true in `claim_order_cancel` we return all fix fee back to maker"
+            ],
+            "type": "bool"
+          },
+          {
+            "name": "fee_beneficiary",
+            "docs": [
+              "Address for transfers fees"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "bump",
+            "docs": [
+              "Bump from pubkey of `State` account"
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "stop_tap",
+            "docs": [
+              "Pubkey for pause program"
+            ],
+            "type": "pubkey"
+          },
+          {
+            "name": "is_working",
+            "docs": [
+              "Is protocol working right now"
+            ],
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "giveOrderState",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "GiveOrderStatus"
+              }
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "wallet_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "nonceMaster",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "nonce",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "authorizedNativeSender",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "dst_address",
+            "type": "bytes"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreatedOrder",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order",
+            "type": {
+              "defined": {
+                "name": "Order"
+              }
+            }
+          },
+          {
+            "name": "fix_fee",
+            "type": "u64"
+          },
+          {
+            "name": "percent_fee",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreatedOrderId",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_id",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "ClaimedOrderCancel",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "ClaimedUnlock",
+      "type": {
+        "kind": "struct",
+        "fields": []
+      }
+    },
+    {
+      "name": "IncreasedGiveAmount",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "order_give_final_amount",
+            "type": "u64"
+          },
+          {
+            "name": "final_percent_fee",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ]
+}

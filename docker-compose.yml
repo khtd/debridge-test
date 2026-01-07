@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:18
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
@@ -8,7 +8,13 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - db_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
   db-migrate:
     build:
@@ -20,11 +26,12 @@ services:
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/dln
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     volumes:
       - ./apps/indexer:/usr/src/app
     restart: "no"
-    command: "npm run migrate"
+    command: "npm run migrate:latest"
 
   indexer:
     build:
@@ -35,7 +42,7 @@ services:
         NODE_APP_NAME: "@debridge-test/indexer"
     environment:
       DATABASE_URL: postgres://postgres:postgres@db:5432/dln
-      SOLANA_RPC_URL: https://api.devnet.solana.com
+      SOLANA_RPC_URL: https://mainnet.helius-rpc.com/?api-key=e53b6dd2-399d-45d6-b324-1fdccd6a1ac5
     depends_on:
       db-migrate:
         condition: service_completed_successfully

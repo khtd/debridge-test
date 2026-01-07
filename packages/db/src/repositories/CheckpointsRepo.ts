@@ -10,8 +10,8 @@ export class CheckpointsRepo {
   async setCheckpoint(name: string, slot: bigint) {
     await db
       .insertInto('checkpoints')
-      .values({ name, last_processed_slot: slot.toString(), updated_at: sql`now()` })
-      .onConflict((oc) => oc.column('name').doUpdateSet({ last_processed_slot: slot.toString(), updated_at: sql`now()` }))
+      .values({ name, lastProcessedSlot: slot.toString(), updatedAt: sql`now()` })
+      .onConflict((oc) => oc.column('name').doUpdateSet({ lastProcessedSlot: slot.toString(), updatedAt: sql`now()` }))
       .execute();
   }
 }

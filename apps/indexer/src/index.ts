@@ -1,3 +1,6 @@
-import { } from '@debridge-test/common';
+import { runIndexer } from './indexer.js';
 
-console.log("hello world")
+runIndexer().catch((err) => {
+  console.error('Indexer crashed', err);
+  process.exit(1);
+});

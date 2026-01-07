@@ -1,4 +1,4 @@
-FROM node:22-alpine AS builder
+FROM node:22 AS builder
 
 ARG NODE_APP_DIR
 ARG NODE_APP_NAME
@@ -15,7 +15,7 @@ RUN npm run build --workspace @debridge-test/dln-idl
 RUN npm run build --workspace "$NODE_APP_NAME"
 
 
-FROM node:22-alpine AS runner
+FROM node:22 AS runner
 
 ARG NODE_APP_DIR
 ARG NODE_APP_NAME

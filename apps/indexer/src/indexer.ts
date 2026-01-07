@@ -1,6 +1,4 @@
-// apps/indexer/src/indexer.ts
-import { getLatestSlot } from './solana/slots.js';
-import { getBlock } from './solana/blocks.js';
+import { getBlock, getLatestSlot } from './utils/solana.js';
 import { CheckpointsRepo } from '@debridge-test/db';
 import { handleTransaction } from './handlers/handleTransaction.js';
 import { config } from './config.js';
@@ -11,13 +9,13 @@ export async function runIndexer() {
   const checkpoint =
     (await checkpointsRepo.getCheckpoint(config.INDEXER_NAME));
 
-  let currentSlot = BigInt(checkpoint?.last_processed_slot ?? 0);
+  let currentSlot = checkpoint?.lastProcessedSlot ? Number(checkpoint?.lastProcessedSlot) : 391305928; //TEMP
 
   while (true) {
     const latestSlot = await getLatestSlot();
     const toSlot =
-      currentSlot + BigInt(config.INDEXER_BATCH_SIZE) < latestSlot
-        ? currentSlot + BigInt(config.INDEXER_BATCH_SIZE)
+      currentSlot + config.INDEXER_BATCH_SIZE < latestSlot
+        ? currentSlot + config.INDEXER_BATCH_SIZE
         : latestSlot;
 
     if (currentSlot >= toSlot) {
@@ -25,15 +23,22 @@ export async function runIndexer() {
       continue;
     }
 
-    for (let slot = currentSlot + BigInt(1); slot <= toSlot; slot++) {
+    for (let slot = currentSlot + 1; slot <= toSlot; slot++) {
       const block = await getBlock(slot);
-      if (!block) continue;
 
-      for (const tx of block.transactions) {
-        await handleTransaction(tx, slot);
+      if (block) {
+        console.log(`slot: ${slot} blockhash: ${block.blockhash}, transaction ${block.transactions.length}`)
+
+        const { blockTime } = block;
+        if (blockTime == null) {
+          console.warn(`skipped block due to NULL blockTime`);
+          continue; 
+        }
+        
+        await Promise.all(block.transactions.map((tx => handleTransaction(tx, blockTime))));
       }
 
-      await checkpointsRepo.setCheckpoint(config.INDEXER_NAME, slot);
+      await checkpointsRepo.setCheckpoint(config.INDEXER_NAME, BigInt(slot));
       currentSlot = slot;
     }
   }
