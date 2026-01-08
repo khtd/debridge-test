@@ -4,6 +4,14 @@ Production-ready dashboard for **deBridge Liquidity Network (Solana)**: indexing
 
 ---
 
+**Demo:** [link](164.92.154.24)  
+
+> Note: Due to a zero budget for this project, only free APIs and limited RPC endpoints were used.  
+> As a result, the app may be slower, and some implementations are mocked.  
+> By the time of writing, reliable data is available for 2023 and the beginning of 2024.
+
+---
+
 ## Architecture
 ![Data flow](./data-flow.png)
 
@@ -24,14 +32,25 @@ Production-ready dashboard for **deBridge Liquidity Network (Solana)**: indexing
 
 ## Key Decisions
 
+- Since my budget for this project is 0 i had to use only free apis and rps. Hence - the app is slower and some implementations are simply mocked
 - **Price fetching** is mocked for test purposes instead of real CoinGecko API.  
 - Aggregation runs in two layers: USD price enrichment, and daily volume computation.   
 - Healthchecks included for DB and API
-- All configuration (ports, DB URL) is environment-based via `.env`.  
+- All configuration (ports, DB URL) is environment-based via `.env`. 
 
 ## Running Locally
-1. Clone the repository:
+1. Clone the repository with submodules:
+```bash
+git clone --recurse-submodules <REPO_URL>
+```
+OR
+```bash
+git clone <REPO URL>
+git submodule update --init --recursive
+```
+
 2. Create .env file (see `.env.example`)
+
 3. Start services:
 ``` bash
 docker-compose up --build -d
