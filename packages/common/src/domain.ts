@@ -15,11 +15,12 @@ export interface OrderFulfilled {
 }
 
 export interface Order {
-  orderId: OrderId;
+  orderId?: OrderId;
   createdAt: Date;
   fulfilledAt?: Date;
   srcChain: string;
   dstChain: string;
   token: string;
   amount: number;
+  usdAmount: number;
 }

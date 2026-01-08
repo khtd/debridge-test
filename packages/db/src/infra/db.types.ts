@@ -27,6 +27,13 @@ export type Numeric = ColumnType<string, number | string, number | string>;
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface DailyUsdVolume {
+  createdVolumeUsd: Numeric;
+  day: string;
+  fulfilledVolumeUsd: Numeric;
+  updatedAt: Generated<Timestamp>;
+}
+
 export interface Events {
   blockTime: Timestamp;
   eventType: string;
@@ -58,6 +65,15 @@ export interface Orders {
   usdAmount: Numeric | null;
 }
 
+export interface PriceCache {
+  chainId: string;
+  createdAt: Generated<Timestamp>;
+  day: string;
+  priceUsd: Numeric;
+  source: string;
+  token: string;
+}
+
 export interface Transactions {
   blockTime: Timestamp;
   processed: Generated<boolean>;
@@ -67,8 +83,10 @@ export interface Transactions {
 }
 
 export interface DB {
+  dailyUsdVolume: DailyUsdVolume;
   events: Events;
   indexerState: IndexerState;
   orders: Orders;
+  priceCache: PriceCache;
   transactions: Transactions;
 }

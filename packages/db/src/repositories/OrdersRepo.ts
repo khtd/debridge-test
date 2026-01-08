@@ -23,4 +23,14 @@ export class OrdersRepo {
   async getAllOrders() {
     return db.selectFrom('orders').selectAll().execute();
   }
+
+  async getOrdersWithoutPrice(limit: number) {
+    return db
+      .selectFrom('orders')
+      .selectAll()
+      .where('usdAmount', 'is', null)
+      .limit(limit)
+      .orderBy("createdAt", "asc")
+      .execute();
+  }
 }

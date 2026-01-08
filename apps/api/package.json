@@ -7,7 +7,9 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@debridge-test/common": "*",
-    "envalid": "^8.1.1"
+    "@debridge-test/db": "*",
+    "@hono/node-server": "^1.19.7",
+    "envalid": "^8.1.1",
+    "hono": "^4.11.3"
   }
 }

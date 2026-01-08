@@ -15,7 +15,7 @@ export class SignaturesFetcherService extends AbstractService {
     this.programData = DLN_PROGRAMS_DIC[program]
   }
 
-  run = async () => {
+  async run() {
     const state = await indexerStateRepo.getState(this.programData.programId)
     const mode = state?.mode ?? FETCHER_DEFAULT_MODE;
     let lastSignature = state?.lastSignature;

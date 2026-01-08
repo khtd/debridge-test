@@ -1,3 +1,42 @@
+# DLN Dashboard
+
+Production-ready dashboard for **deBridge Liquidity Network (Solana)**: indexing, aggregation, and visualization of order events.
+
+---
+
+## Architecture
+![Data flow](./data-flow.png)
+
+- **Indexer**: scans Solana blocks, parses `OrderCreated` and `OrderFulfilled` events, stores them in the database.  
+- **Aggregator**:  
+  1. Completes orders with USD price  
+  2. Calculates daily USD volume for created and fulfilled orders  
+- **API**: exposes endpoints like `/api/daily-volume`  
+- **Frontend**: SPA with interactive charts and date picker 
+
+## Technologies
+
+- **Backend**: Node.js + Hono + Effect.ts
+- **Frontend**: React + Vite + Recharts + Nginx  
+- **Database**: PostgreSQL  
+- **Blockchain**: Solana (`@solana/web3.js` + `@coral-xyz/anchor`)  
+- **DevOps**: Docker + docker-compose 
+
+## Key Decisions
+
+- **Price fetching** is mocked for test purposes instead of real CoinGecko API.  
+- Aggregation runs in two layers: USD price enrichment, and daily volume computation.   
+- Healthchecks included for DB and API
+- All configuration (ports, DB URL) is environment-based via `.env`.  
+
+## Running Locally
+1. Clone the repository:
+2. Create .env file (see `.env.example`)
+3. Start services:
+``` bash
+docker-compose up --build -d
+```
+
 ### IDL usage
 
 DLN IDLs are included as a git submodule pointing to
@@ -12,30 +51,4 @@ How to update IDL
 git submodule update --init --recursive
 ```
 
-## Run locally
-
-You can run the whole system
-
-``` bash
-docker-compose build
-docker-compose up 
-```
-// TODO - env variables
-Or you can test some services separatelly
-
-One-time 
-``` bash
-npm run build --workspace @debridge-test/common
-npm run build --workspace @debridge-test/db
-npm run migrate --workspace @debridge-test/db
-npm run build --workspace @debridge-test/dln-idl
-```
-
-```bash
-npm run start --workspace @debridge-test/<service_name>
-```
-
-services
-* indexer
-* api
-* aggregator
+IDL in the repo is not compatible with @coral-xyz/anchor v0.30 and higher, so it is not possible to use it with `solana-tx-parser-public`. I took liberty to update the IDl through anchor convert cli [doc](https://www.anchor-lang.com/docs/updates/release-notes/0-30-1#idl-convert-command)

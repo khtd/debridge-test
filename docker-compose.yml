@@ -24,7 +24,7 @@ services:
         NODE_APP_DIR: "packages/db/"
         NODE_APP_NAME: "@debridge-test/db"
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
     depends_on:
       db:
         condition: service_healthy
@@ -41,8 +41,8 @@ services:
         NODE_APP_DIR: "apps/indexer/"
         NODE_APP_NAME: "@debridge-test/indexer"
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
-      SOLANA_RPC_URL: https://mainnet.helius-rpc.com/?api-key=e53b6dd2-399d-45d6-b324-1fdccd6a1ac5
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
+      SOLANA_RPC_URL: ${SOLANA_RPC_URL}
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -57,7 +57,8 @@ services:
         NODE_APP_DIR: "apps/aggregator/"
         NODE_APP_NAME: "@debridge-test/aggregator"
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
+      USE_MOCK_PRICES: true
     depends_on:
       db-migrate:
         condition: service_completed_successfully
@@ -72,22 +73,32 @@ services:
         NODE_APP_DIR: "apps/api/"
         NODE_APP_NAME: "@debridge-test/api"
     environment:
-      DATABASE_URL: postgres://postgres:postgres@db:5432/dln
+      DATABASE_URL: ${DATABASE_URL_DOCKER}
+      PORT: ${API_PORT}
     depends_on:
       db-migrate:
         condition: service_completed_successfully
     ports:
-      - "4000:4000"
+      - "${API_PORT}:${API_PORT}"
     volumes:
       - ./apps/api:/usr/src/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:${API_PORT}/health"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
 
-# frontend:
-#   build: ./apps/frontend
-#  ports:
-#      - "3000:3000"
-#    volumes:
-#      - ./apps/frontend:/usr/src/app
-#    command: ["npm", "run", "dev"]
+  frontend:
+    build: 
+      context: .
+      dockerfile: ./apps/frontend/Dockerfile
+    environment:
+      FRONTEND_PORT: ${FRONTEND_PORT}
+      API_PORT: ${API_PORT}
+    depends_on:
+      - api
+    ports:
+        - "${FRONTEND_EXTERNAL_PORT}:${FRONTEND_PORT}"
 
 volumes:
   db_data:

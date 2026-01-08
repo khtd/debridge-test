@@ -7,7 +7,12 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@coingecko/coingecko-typescript": "^2.5.0",
     "@debridge-test/common": "*",
-    "envalid": "^8.1.1"
+    "@debridge-test/db": "*",
+    "@effect/platform-node": "^0.104.0",
+    "effect": "^3.19.14",
+    "envalid": "^8.1.1",
+    "prando": "^6.0.1"
   }
 }

@@ -25,7 +25,7 @@ export class EventProcessorService extends AbstractService {
     super()
   }
 
-  run = async () => {
+  async run() {
     let unprocessed = await eventsRepo.countUnprocessed();
     console.log(`runnning event processor for ${unprocessed} events`);
     for (let processed = 0; processed < unprocessed; processed += BATCH_SIZE) {

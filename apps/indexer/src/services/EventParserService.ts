@@ -12,8 +12,8 @@ export class EventParserService extends AbstractService {
     super()
   }
 
-  run = async () => {
-    const transactions = await transactionsRepo.getFirstNUnprocessed(10);
+  async run() {
+    const transactions = await transactionsRepo.getFirstNUnprocessed(30);
     console.log(`running event parser for the next ${transactions.length} transactions`)
     for (const trx of transactions) {
       await this.processTransaction(trx.signature)
