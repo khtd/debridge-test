@@ -4,7 +4,7 @@ Production-ready dashboard for **deBridge Liquidity Network (Solana)**: indexing
 
 ---
 
-**Demo:** [link](164.92.154.24)  
+**Demo:** [link](http://164.92.154.24/)  
 
 > Note: Due to a zero budget for this project, only free APIs and limited RPC endpoints were used.  
 > As a result, the app may be slower, and some implementations are mocked.  
