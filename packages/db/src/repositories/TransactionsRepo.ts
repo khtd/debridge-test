@@ -13,7 +13,7 @@ export class TransactionsRepo {
       .selectFrom("transactions")
       .selectAll()
       .where("processed", "=", false)
-      .orderBy("blockTime", "desc")
+      .orderBy("blockTime", "asc")
       .limit(N)
       .execute()
   }
