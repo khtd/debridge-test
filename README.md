@@ -5,10 +5,12 @@ Production-ready dashboard for **deBridge Liquidity Network (Solana)**: indexing
 ---
 
 **Demo:** [link](http://164.92.154.24/)  
+**DB**: postgres://postgres:postgres@164.92.154.24:5432/dln
 
 > Note: Due to a zero budget for this project, only free APIs and limited RPC endpoints were used.  
 > As a result, the app may be slower, and some implementations are mocked.  
 > By the time of writing, reliable data is available for 2023 and the beginning of 2024.
+> You can connect to the Database and check which data have been parsed already
 
 ---
 
